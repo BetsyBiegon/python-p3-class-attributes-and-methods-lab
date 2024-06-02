@@ -1,17 +1,11 @@
-#!/usr/bin/env python3
-
 from song import Song
 
-Song.count = 0
-Song.genre_count = {}
-Song.artist_count = {}
-
 class TestSong:
-    '''Class "Song" in song.py'''
-
-    Song("99 Problems", "Jay Z", "Rap")
-    Song("Halo", "Beyonce", "Pop")
-    Song("Smells Like Teen Spirit", "Nirvana", "Rock")
+    @classmethod
+    def setup_class(cls):
+        cls.song_99_problems = Song("99 Problems", "Jay Z", "Rap")
+        cls.song_halo = Song("Halo", "Beyonce", "Pop")
+        cls.song_smells_like_teen_spirit = Song("Smells Like Teen Spirit", "Nirvana", "Rock")
 
     def test_saves_name_artist_genre(self):
         '''instantiates with a name, artist, and genre.'''
@@ -28,15 +22,16 @@ class TestSong:
 
     def test_has_genres(self):
         '''keeps track of all Song genres.'''
-        assert("Rap" in Song.genres)
-        assert("Pop" in Song.genres)
-        assert("Rock" in Song.genres)
+        assert("Rap" in Song.genre_count)
+        assert("Pop" in Song.genre_count)
+        assert("Rock" in Song.genre_count)
 
     def test_has_artists(self):
         '''keeps track of all Song artists.'''
-        assert("Jay Z" in Song.artists)
-        assert("Beyonce" in Song.artists)
-        assert("Hall and Oates" in Song.artists)
+        assert("Jay Z" in Song.artist_count)
+        assert("Beyonce" in Song.artist_count)
+        assert("Nirvana" in Song.artist_count)
+        assert("Hall and Oates" in Song.artist_count)
         
     def test_has_genre_count(self):
         '''keeps count of Songs for each genre.'''
